@@ -1,0 +1,16 @@
+{
+  "name": "userservice",
+  "version": "1.0.0",
+  "description": "A demo project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Rukaiyya Naaz",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
