@@ -1,0 +1,1 @@
+export {UserModel, EducationModel} from "./user.model.js";
