@@ -22,7 +22,6 @@ export const authMiddleware = async(req, res, next) => {
     console.log({"fromEnvUser": process.env.USER})
     console.log({"passFromEnv": process.env.PASSWORD});
     if(username == process.env.USER && password == process.env.PASSWORD){
-        console.log("here==============")
         return next();
     }
     res.set('WWW-Authenticate', 'Basic realm="user_pages"');
