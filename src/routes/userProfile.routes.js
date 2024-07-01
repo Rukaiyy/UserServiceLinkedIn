@@ -1,6 +1,9 @@
 import express from "express"
 import { authMiddleware } from "../middlewares/basicAuth.middlewares.js";
+import { getprofileController } from "../controllers/profile.controller.js"
 
-const router = express();
+const routerOne = express();
 
-router.get()
+routerOne.get("/profile", authMiddleware, getprofileController);
+
+export default routerOne;
