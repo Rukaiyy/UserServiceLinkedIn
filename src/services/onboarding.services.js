@@ -1,3 +1,4 @@
+import { STATUS } from "../constants/constants.js";
 import { UserModel } from "../models/index.js";
 export async function userSignUpServices(email) {
     try {
@@ -57,6 +58,37 @@ export async function addTokenToDataBase(forgetToken, email) {
 export async function updateUserPassword(userId, password) {
     try {
         return await UserModel.findByIdAndUpdate({"_id": userId}, {"password": password}, {new: true});
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+export async function findUserByUserId(userId){
+    try {
+        return await UserModel.findOne(
+            {
+                "_id": userId,
+                "status": STATUS.ACTIVE
+            }
+        )
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+export async function updateProfile(params){
+    try {
+        return await UserModel.findOneAndUpdate(
+            {
+                "_id": params.userId,
+            },
+            params,
+            {
+                new: true
+            }
+        )
     } catch (error) {
         console.error(error);
         throw error;

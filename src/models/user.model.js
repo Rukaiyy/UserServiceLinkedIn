@@ -60,13 +60,9 @@ export const userSchema = new Schema({
         required: false
     },
     profilePicture: {
-        type: Schema.Types.Buffer,
+        type: Schema.Types.String,
         required: false,
         default: ""
-    },
-    connectionCount: {
-        type:Schema.Types.Number,
-        required:false
     },
     skills:{
         type: Schema.Types.Array,
@@ -81,10 +77,6 @@ export const userSchema = new Schema({
         type: Schema.Types.String,
         required: false,
         default: ""
-    },
-    startDate: {
-        type: Schema.Types.Date,
-        required: false,
     },
     isVerified: {
         type: Schema.Types.Boolean,

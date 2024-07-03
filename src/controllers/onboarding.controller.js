@@ -5,8 +5,8 @@ import {
     updateUserPassword
 } from "../services/onboarding.services.js";
 import {sendMail} from "../lib/nodemailer/mailManager.js";
-import jwt from 'jsonwebtoken';
 import dotenv from "dotenv";
+import { createAccessToken } from "../middlewares/userAuth.middleware.js"
 dotenv.config();
 export const userSignUp = async(req, res) => {
     try {
@@ -229,16 +229,7 @@ export const loginControllers = async(req,res) => {
                 }
             )
         }
-        const accessToken = jwt.sign(
-            {
-                "email": ifEmailExist?.email,
-                "userId": ifEmailExist?._id
-            },
-            process.env.JSON_WEB_TOKEN_SECRET,
-            {
-                expiresIn: "180d"
-            }
-        )
+        const accessToken = await createAccessToken(ifEmailExist?._id);
         return res.status(200).json(
             {
                 "result": "SUCCESS",

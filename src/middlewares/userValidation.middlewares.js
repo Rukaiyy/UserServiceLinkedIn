@@ -79,3 +79,43 @@ export const loginValidations = async(req,res,next) => {
         throw error;
     }
 }
+
+export const userProfileApi = async(req, res, next) => {
+    try {
+        const userProfileSchema = Joi.object({
+            userId: Joi.string().trim().required()
+        })
+        const result = userProfileSchema.validate(req.params);
+        if(result.error){
+            console.log(result.error);
+            throw error;
+        }else {
+            next();
+        }
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+export const updateProfile = async(req, res, next) => {
+    try {
+        const updateProfileSchema = Joi.object({
+            about: Joi.string().trim().optional(),
+            profilePicture: Joi.string().trim().optional(),
+            skills: Joi.array().items(Joi.string().trim()).optional(),
+            workingIn: Joi.string().trim().optional(),
+            designation: Joi.string().trim().optional()
+        })
+        const result = updateProfileSchema.validate(req.body);
+        if(result.error){
+            console.log(result.error);
+            throw error;
+        }else{
+            next();
+        }
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
